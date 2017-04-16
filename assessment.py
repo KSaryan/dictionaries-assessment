@@ -28,8 +28,13 @@ def count_words(phrase):
         >>> print_dict(count_words("Porcupine see, porcupine do."))
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
+    word_count ={}
+    phrase = phrase.split()
+    for word in phrase:
+        word_count[word] = word_count.get(word, 0) + 1
 
-    return {}
+
+    return word_count
 
 
 def get_melon_price(melon_name):
@@ -53,8 +58,12 @@ def get_melon_price(melon_name):
         >>> get_melon_price('Tomato')
         'No price found'
     """
+    melon_prices = {"Watermelon": 2.95, 
+                    "Cantalope": 2.50, 
+                    "Musk": 3.25, 
+                    "Christmas": 14.25}
 
-    return 0
+    return melon_prices.get(melon_name, "No price found")
 
 
 def word_length_sorted(words):
@@ -75,8 +84,16 @@ def word_length_sorted(words):
         >>> word_length_sorted(["porcupine", "ok"])
         [(2, ['ok']), (9, ['porcupine'])]
     """
+    word_lengths = {}
+    word_lens_and_words =[]
+    
+    for word in words:
+        word_lengths[len(word)] = (word_lengths.get(len(word), [])) + [word]
 
-    return []
+    for key in word_lengths:
+        word_lens_and_words.append(tuple([key, sorted(word_lengths[key])]))
+    
+    return sorted(word_lens_and_words)
 
 
 def translate_to_pirate_talk(phrase):
@@ -117,8 +134,23 @@ def translate_to_pirate_talk(phrase):
         >>> translate_to_pirate_talk("my student is not a man!")
         'me swabbie be not a man!'
     """
-
-    return ""
+    english_to_pirate = {'sir': 'matey',
+                        'hotel': 'fleabag inn',
+                        'student': 'swabbie',
+                        'man': 'matey',
+                        'professor': 'foul blaggart',
+                        'restaurant':  'galley',
+                        'your': 'yer',
+                        'excuse': 'arr',
+                        'students': 'swabbies',
+                        'are': 'be',
+                        'restroom': 'head',
+                        'my': 'me',
+                        'is': 'be'}
+    phrase = phrase.split()
+    for index, word in enumerate(phrase):
+      phrase[index] = english_to_pirate.get(word, word)
+    return " ".join(phrase)
 
 
 def kids_game(names):
@@ -166,8 +198,22 @@ def kids_game(names):
     a dictionary (with the super-fast lookup they provide) can help;
     good solutions here will definitely require a dictionary.
     """
+    first_letters = {}
+    result = [names.pop(0)]
+    for name in names:
+        first_letters[name[0]] = first_letters.get(name[0], []) + [name]
+    while True:
+      if result[-1][-1] in first_letters:
+        list_of_words= first_letters[result[-1][-1]]
+        if len(list_of_words) >0:
+          result.append(list_of_words[0])
+          list_of_words.pop(0)
+        else:
+          break
+      else:
+        break
 
-    return []
+    return result
 
 #####################################################################
 # You can ignore everything below this.
