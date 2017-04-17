@@ -28,7 +28,7 @@ def count_words(phrase):
         >>> print_dict(count_words("Porcupine see, porcupine do."))
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
-    word_count ={}
+    word_count = {}
     phrase = phrase.split()
     for word in phrase:
         word_count[word] = word_count.get(word, 0) + 1
@@ -200,12 +200,14 @@ def kids_game(names):
     """
     first_letters = {}
     result = [names.pop(0)]
+    
     for name in names:
         first_letters[name[0]] = first_letters.get(name[0], []) + [name]
+    
     while True:
       if result[-1][-1] in first_letters:
-        list_of_words= first_letters[result[-1][-1]]
-        if len(list_of_words) >0:
+        list_of_words = first_letters[result[-1][-1]]
+        if list_of_words:
           result.append(list_of_words[0])
           list_of_words.pop(0)
         else:

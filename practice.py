@@ -92,12 +92,13 @@ def get_sum_zero_pairs(numbers):
         >>> sort_pairs( get_sum_zero_pairs([1, 3, -1, 1, 1, 0]) )
         [[-1, 1], [0, 0]]
     """
-    sum_dict ={}
-    zero_sum_list =[]
+    sum_dict = {}
+    zero_sum_list = []
         
     for num in numbers:
       for other_num in numbers:
         sum_dict[tuple(sorted([num, other_num]))] = other_num + num
+    
     for pair in sum_dict:
       if sum_dict[pair] == 0:
         zero_sum_list.append(list(pair))
@@ -131,13 +132,17 @@ def top_chars(phrase):
     """
     letter_count = {}
     max_letters =[]
+
     for letter in phrase.lower():
         if letter.isalpha():
            letter_count[letter] = letter_count.get(letter, 0) + 1
-    values = sorted(letter_count.values())
+    
+    highest_value = max(letter_count.values())
+    
     for letter in letter_count:
-      if letter_count[letter] == values[-1]:
+      if letter_count[letter] == highest_value:
         max_letters.append(letter)
+    
     return sorted(max_letters)
 
 #####################################################################
