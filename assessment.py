@@ -202,6 +202,7 @@ def kids_game(names):
     result = [names.pop(0)]
     
     for name in names:
+        # I don't get why I can't use .append() here
         first_letters[name[0]] = first_letters.get(name[0], []) + [name]
     
     while True:
